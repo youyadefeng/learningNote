@@ -16,15 +16,15 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 ### enum替换：the enum hack
 
-![image-20210311224520223](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311224520223.png)
+![image-20210311224520223](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311224520223.png)
 
 在类里面声明一个枚举类型，将枚举类型成员当作常量int初始化数组的维度
 
 ### inline替换宏表达式
 
-![image-20210311224754394](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311224754394.png)
+![image-20210311224754394](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311224754394.png)
 
-![image-20210311224813467](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311224813467.png)
+![image-20210311224813467](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311224813467.png)
 
 
 
@@ -34,7 +34,7 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 ### const与迭代器结合
 
-![image-20210311225008615](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311225008615.png)
+![image-20210311225008615](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311225008615.png)
 
 声明迭代器为const，迭代器的指向不能改变
 
@@ -42,7 +42,7 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 ### 下标运算符的常量版本和非常量版本
 
-![image-20210311225226312](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311225226312.png)
+![image-20210311225226312](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311225226312.png)
 
 如果类中存在下标运算符的常量版本和非常量版本，在通过实例调用下标运算符时：
 
@@ -54,11 +54,11 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 用mutable修饰的变量，即使在const成员函数里面也可以进行修改
 
-![image-20210311225752301](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311225752301.png)
+![image-20210311225752301](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311225752301.png)
 
 ### 在non-const 和 const 成员函数中避免重复
 
-![image-20210311230027915](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311230027915.png)
+![image-20210311230027915](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311230027915.png)
 
 如果存在诸如“校验数据完整性、边界检查”这些杂项任务要完成时，可以把这些操作放在const版本成员函数里面执行，执行完毕后再进行取下标值操作。
 
@@ -82,35 +82,35 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 ### 不同编译单元内定义之non-local static对象的初始化次序问题
 
-![image-20210311232459346](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232459346.png)
+![image-20210311232459346](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232459346.png)
 
 **编译单元**：是指产出单一目标文件的那些源码，基本上它是单一源码文件加上其所引入的头文件
 
-![image-20210311231904454](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311231904454.png)
+![image-20210311231904454](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311231904454.png)
 
 实例：
 
-![image-20210311231948883](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311231948883.png)
+![image-20210311231948883](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311231948883.png)
 
 注意tfs用extern修饰，是一个外部文件。
 
-![image-20210311232211313](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232211313.png)
+![image-20210311232211313](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232211313.png)
 
 Directory的构造函数用到tfs，当执行Directory的构造函数时：
 
-![image-20210311232129342](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232129342.png)
+![image-20210311232129342](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232129342.png)
 
-![image-20210311232139710](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232139710.png)
+![image-20210311232139710](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232139710.png)
 
 **解决方法：将每个non-local static对象搬到自己的专属函数里面去**
 
-![image-20210311232715131](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232715131.png)
+![image-20210311232715131](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232715131.png)
 
-![image-20210311232723863](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232723863.png)
+![image-20210311232723863](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232723863.png)
 
-![image-20210311232841235](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232841235.png)
+![image-20210311232841235](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232841235.png)
 
-![image-20210311232756247](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311232756247.png)
+![image-20210311232756247](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311232756247.png)
 
 ## 条款05：了解C++静默编写并调用哪些函数
 
@@ -122,9 +122,9 @@ Directory的构造函数用到tfs，当执行Directory的构造函数时：
 
 ### C++不允许“引用类型”改指不同对象
 
-![image-20210311233451256](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311233451256.png)
+![image-20210311233451256](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311233451256.png)
 
-![image-20210311233508645](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210311233508645.png)
+![image-20210311233508645](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210311233508645.png)
 
 最后一行赋值语句会调用类的默认拷贝赋值函数，但这样会引发错误：
 
