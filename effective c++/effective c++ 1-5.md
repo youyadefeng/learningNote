@@ -50,7 +50,7 @@ C++大体上由四个次语言组成：C、object-oriented C++、Template C++、
 
 如果实例是普通类型，则调用普通版本的下标运算符
 
-### ### mutable
+### mutable
 
 用mutable修饰的变量，即使在const成员函数里面也可以进行修改
 
