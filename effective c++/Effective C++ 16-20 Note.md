@@ -6,7 +6,7 @@
 
 单一对象的内存布局与数组的内存布局不一样，数组需要额外的空间记录数组大小，可以把两者的内存情况理解为下图：
 
-![image-20210314101028639](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314101028639.png)
+![image-20210314101028639](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314101028639.png)
 
 如果对一个单一对象使用delete[]，编译器会按照删除数组的形式寻找对应的n，读取到本不应该存在的n。然后错误的多次析构。
 
@@ -18,19 +18,19 @@
 
 考虑如下语句：
 
-![image-20210314101359564](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314101359564.png)
+![image-20210314101359564](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314101359564.png)
 
-![image-20210314101431512](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314101431512.png)
+![image-20210314101431512](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314101431512.png)
 
 而这三件事的顺序是不一定的，可能会出现如下顺序：
 
-![image-20210314101515195](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314101515195.png)
+![image-20210314101515195](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314101515195.png)
 
 如果在调用priority时发生了异常，就会因为new出来的对象没能delete掉而导致内存泄漏。
 
 所以我们需要将new和智能指针的构造绑定在一起，形成一个**独立语句**，在priority被调用之前执行：
 
-![image-20210314101700462](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314101700462.png)
+![image-20210314101700462](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314101700462.png)
 
 ## 条款18：让接口容易被正确使用，不易被误用
 
@@ -42,19 +42,19 @@
 
 **建立新类型：**
 
-![image-20210314103357339](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314103357339.png)
+![image-20210314103357339](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314103357339.png)
 
 这个函数可能会因为不同国家表示时间的方式不同而被误用，如果我们创建month、day、year三个新类型，并且将这三个类型作为构造函数的实参，就不会引起误用：
 
-![image-20210314103516830](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314103516830.png)
+![image-20210314103516830](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314103516830.png)
 
 **束缚对象值：**可以在新类型里面给出该类型对象的取值范围，具体做法时在类内编写静态成员函数，返回合理的对象值
 
-![image-20210314103820523](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314103820523.png)
+![image-20210314103820523](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314103820523.png)
 
 **限制类型上的操作：**
 
-![image-20210314103904742](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314103904742.png)
+![image-20210314103904742](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314103904742.png)
 
 **消除客户的资源管理责任：**任何接口如果要求客户必须记得做某些事情，就是有着“不正确使用”的倾向，因为客户可能会忘记做那件事。
 
@@ -62,7 +62,7 @@
 
 ### tr1::shared_ptr支持定制型删除器，这可以防范DLL问题，可被用来自动接触互斥锁等等
 
-![image-20210314104442276](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314104442276.png)
+![image-20210314104442276](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314104442276.png)
 
 ## 条款19：设计class 犹如设计type
 
@@ -138,4 +138,4 @@ copy构造函数该如何实现
 
 ### 对于内置类型、STL的迭代器和函数对象而言，值传递往往比较适当
 
-![image-20210314110819806](C:\Users\94375\AppData\Roaming\Typora\typora-user-images\image-20210314110819806.png)
+![image-20210314110819806](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314110819806.png)
