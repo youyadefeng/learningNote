@@ -58,5 +58,42 @@ heap-allocated对象就是new出来的对象，new出来的对象需要delete。
 
 ![image-20210314115106368](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210314115106368.png)
 
+## 条款24：若所有参数皆需类型转换，请为此采用non-member函数
 
+只有当参数被列于参数列内，这个参数才是隐式类型转换的合格参与者
 
+如果采用成员函数：
+
+![image-20210320214514375](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320214514375.png)
+
+![image-20210320214525531](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320214525531.png)
+
+oneHalf重载了*，而2则没有重载。当2位于参数列表时，它会隐式转换为oneHalf类型，而反过来则不行
+
+## 条款25：考虑写出一个不抛异常的swap函数
+
+### 当std::swap对自定义类型的效率不高时，提供一个swap成员函数，并确定这个函数不抛出异常
+
+当出现“以指针指向一个对象，内含真正数据”（pimpl：point to implementation）的类型时，系统提供的swap函数就不够高效了。因为它还是会去复制这个对象的值，然后进行交换。而更高效的办法是交换两个对象的指针：
+
+![image-20210320222833529](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320222833529.png)
+
+### 如果你提供一个member swap，也该提供一个non-member swap用来调用前者。对于classes，也请特化std::swap
+
+![image-20210320223056123](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320223056123.png)
+
+在自定义类中加入特定的swap函数，在命名空间std中对swap函数进行指定类型的特化
+
+对于模板类，在类中加入特定的swap函数，在相同命名空间里再定义一个非成员版本的swap函数
+
+![image-20210320223754441](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320223754441.png)
+
+### 调用swap时应针对std::swap使用using声明式，然后调用swap并且不带命名空间资格修饰
+
+![image-20210320223859165](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320223859165.png)
+
+![image-20210320223925185](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320223925185.png)
+
+### 对“用户自定义类型”进行std template全特化是好的，但千万不要尝试在std内加入某些对std而言全新的东西
+
+![image-20210320224145314](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210320224145314.png)
