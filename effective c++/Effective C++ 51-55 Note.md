@@ -26,7 +26,7 @@
 
 ![image-20210324105501156](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210324105501156.png)
 
-### 条款52：写了placement new 也要写 placement delete
+## 条款52：写了placement new 也要写 placement delete
 
 ### 当你写一个placement operator new，请确定也写出了对应的placement operator delete。如果没有这样做，你的程序可能会发生内存泄漏
 
@@ -48,13 +48,13 @@
 
 ![image-20210324110900084](https://yydf-1305206966.cos.ap-nanjing.myqcloud.com/image-20210324110900084.png)
 
-### 条款53：不要轻忽编译器的警告
+## 条款53：不要轻忽编译器的警告
 
 严肃对待编译器发出的警告信息。努力在你的编译器的最高警告级别下争取“无任何警告”的荣誉
 
 不要过渡依赖编译器的报警能力，不同编译器对待事物的态度不同，一旦移植到另一个编译器上，你原本依赖的警告信息有可能消失
 
-### 条款54：让自己熟悉包括TR1在内的标准程序库
+## 条款54：让自己熟悉包括TR1在内的标准程序库
 
 ### C++98列入的C++标准程序库的主要内容
 
